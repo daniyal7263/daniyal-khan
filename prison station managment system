@@ -1,0 +1,334 @@
+#include<iostream>
+using namespace std;
+int cell[100]={1,2,3,4,5,6,7,8,9,10};	
+class person{
+	public:
+		int a=0;
+		string gender[100];
+	int age[100];
+	float height[100];
+		string name[100];
+		void in(){
+			cout << "\t\t\t\t    -----------------------------------------------------\n";
+    		cout << "\t\t\t\t    |                                                   |\n";
+    		cout << "\t\t\t\t    |         Enter basic information of prisoner       |\n";
+    		cout << "\t\t\t\t    |                                                   |\n";
+    		cout << "\t\t\t\t    -----------------------------------------------------\n";
+			cout<<"\n\n\t\t\t\t\tEnter name:";
+			cin>>name[a];
+			cout<<"\n\n\t\t\t\t\tEnter age:";
+			cin>>age[a];
+			cout<<"\n\n\t\t\t\t\tEnter gender:";
+			cin>>gender[a];
+			cout<<"\n\n\t\t\t\t\tEnter height:";
+			cin>>height[a];
+		}
+};
+class prisoner:public person{
+	public:
+		string crime[100];
+		int pmnth[100];
+		void in(){
+			system("cls");
+			person::in();
+			cout<<"\n\n\t\t\t\t\tEnter crime:";
+			cin>>crime[a];
+			cout<<"\n\n\t\t\t\t\tEnter punishment months:";
+			cin>>pmnth[a];
+			cout<<"\n\n\t\t\t\t\tYour cell no is:"<<cell[a]<<endl;
+			a++;
+			}
+		void show(){
+			int x=1;
+			cout << "\n===========================================================================================================\n";
+    		cout << "SR.\tNAME\tAge\tGender\tHeight\tCrime\t\tPunishment\tCell No\n";
+    		cout << "===========================================================================================================\n";
+    		for(int i=0;i<a;i++){
+    		cout<<x<<"\t"<<name[i]<<"\t"<<age[i]<<"\t"<<gender[i]<<"\t"<<height[i]<<"\t"<<crime[i]<<"\t\t"<<pmnth[i]<<"\t\t"<<cell[i]<<endl;
+    		x++;
+			}
+		}	
+	};
+	class admin{
+		prisoner p;
+		string uname,pass;
+		public:
+		void login(){
+			int ag,a=0,at=3;
+			do{
+			system("cls");
+			cout << "\t\t\t\t    ----------------------------------------\n";
+  			cout << "\t\t\t\t    |   PRISON STATION MANAGEMENT SYSTEM   |\n";
+        	cout << "\t\t\t\t    ----------------------------------------\n";
+			cout<<"\n\n\t\t\t\t\tEnter username:";
+			cin>>uname;
+			cout<<"\n\n\t\t\t\t\tEnter password:";
+			cin>>pass;
+			if(uname=="admin"&&pass=="pass"){
+				system("cls");
+				admin::page();
+			}
+			else if(uname!="admin"&&pass!="pass"){
+				at=at-1;
+				cout<<"\n\n\t\t\t\tYou entered the wrong username and password.\n";
+				cout<<"\t\t\t\tNumber of attempts remain:"<<at;
+				cout<<"\n\t\t\t\tPress 1 to login again:";
+				cin>>ag;
+				a=a+1;
+			}
+			if(a==3&&at==0){
+				system("cls");
+				cout<<"\n\n\n\t\t\t\tBecause your no of attempts finished so you are not entered in the system.\n\n\n";
+			}
+			 }while(ag==1&&a<3); 
+	}
+		void attendence(){
+			int k;
+			char ch;
+			do{
+			system("cls");
+			cout << "\t\t\t\t    -----------------------------------------------------\n";
+        	cout << "\t\t\t\t    |                                                   |\n";
+        	cout << "\t\t\t\t    |           Prisoner attendance maintainer          |\n";
+        	cout << "\t\t\t\t    |                                                   |\n";
+        	cout << "\t\t\t\t    -----------------------------------------------------\n";
+			p.show();
+			cout<<"\n\n\t\t\t\t\tEnter cell no of the prisoner.";
+			cin>>k;
+			k=k-1;
+			cout<<"\n\n\t\t\t\t\tName:"<<p.name[k]<<endl;		
+			p.pmnth[k]--;
+			cout<<"\n\n\t\t\t\t\tNow your punishmnet is:"<<p.pmnth[k]<<endl;
+			if (p.pmnth[k] <= 0)
+            {
+                cout << "\n\t\t\t\t\t";
+                cout << "Prisoner is ready for release";
+            }
+            cout << "\n\n\n\t\t\t\t\t";
+            cout << "Press y to choose another prisoner and press n to exit :";
+            cin >> ch;
+		}while(ch=='y');
+	}
+			void release(){		
+        	int c, r;
+    char ch;
+    do
+    {
+        system("cls");
+        cout << "\t\t\t\t    -----------------------------------------------------\n";
+        cout << "\t\t\t\t    |                                                   |\n";
+        cout << "\t\t\t\t    |                Release prisoner                   |\n";
+        cout << "\t\t\t\t    |                                                   |\n";
+        cout << "\t\t\t\t    -----------------------------------------------------\n";
+      	p.show();
+            cout << "\n\t\t\t\t\t";
+            cout << "Enter the cell block of the prisoner :";
+        	cin>>c;
+            c = c - 1;
+            cout << "\n\t\t\t\t\t";
+            cout << "Name : ";
+            cout << p.name[c];
+            cout << "\n\t\t\t\t\t";
+            if (p.pmnth[c] <= 0)
+            {
+                cout << "\n\t\t\t\t\t";
+                cout << "Prisoner is ready for release";
+                cout << "\n\t\t\t\t\t";
+                cout << "Press 1 to release the prisoner :";
+                cin >> r;
+                if (r == 1)
+                {
+                    cout << "\n\t\t\t\t\tProcessing";
+                    for (int process = 0; process < 7; process++)
+                    {
+                        for (int a = 0; a <= 100000000; a++)
+                        {
+                        }
+                        cout << ".";
+                    }
+                    p.name[c]="";
+                    p.age[c]=0;
+                    p.gender[c]="";
+                    p.height[c]=0;
+                    p.crime[c]="";
+                    p.pmnth[c]=0;
+                    cout << "\n\t\t\t\t\t";
+                    cout << "Prisoner released successfully";
+                }
+            }
+        else
+            {
+                cout << "\n\t\t\t\t\t";
+                cout << "Prisoner is not ready for release";
+            }
+             cout << "\n\n";
+            cout << "\n\t\t\t\t\t";
+            cout << "Press y to choose another prisoner and press n to exit :";
+            cin >> ch;
+    } while (ch == 'y');
+}
+void search(){
+			int s,c;
+		system("cls");
+    	cout << "\t\t\t\t    ----------------------------------------\n";
+    	cout << "\t\t\t\t    |             Search Menu              |\n";
+    	cout << "\t\t\t\t    ----------------------------------------\n";
+    	cout<<"Enter cell no of the prisoner to be searched:";
+    	cin>>c;
+    	s=c-1;
+    	if(cell[s]==c){
+		if(p.name[s]!=""){
+    	cout << "\n===========================================================================================================\n";
+    		cout << "NAME\tAge\tGender\tHeight\tCrime\t\tPunishment\tCell No\n";
+    		cout << "===========================================================================================================\n";
+    		cout<<p.name[s]<<"\t"<<p.age[s]<<"\t"<<p.gender[s]<<"\t"<<p.height[s]<<"\t"<<p.crime[s]<<"\t\t"<<p.pmnth[s]<<"\t\t"<<cell[s]<<endl;
+		}
+		else {
+		cout << "\n===========================================================================================================\n";
+    		cout << "NAME\tAge\tGender\tHeight\tCrime\t\tPunishment\tCell No\n";
+    		cout << "===========================================================================================================\n";
+		cout<<"No prisoner is present.";
+		}
+	}
+	}
+		void logout(){
+			int a;
+			cout<<"\n\n\t\t\t\t\tDo you want to logout?\n\n\t\t\t\t\tIf yes then press 1\n\t\t\t\t\tIf no then press 2.";
+			cin>>a;
+			if(a==1){
+			admin::login();
+		}
+			else if(a==2){
+			system("cls");
+			admin::page();
+		}
+		
+		}
+		void exit(){
+			cout << "\n\n\n\n\n\n\t\t\t\t\t\t";
+    		cout << "Thank you!!";
+    		cout << "\n\n\n\n\n\n\t\t\t\t\t\t";		
+		}
+		void page(){
+		int c;
+		int k;
+		cout << "\n\n\n";
+        cout << "\t\t\t\t---------------------------------------------------------------------------\n";
+        cout << "\t\t\t\t|                                                                         |\n";
+        cout << "\t\t\t\t|                     1)   New prisoner entry                             |\n";
+        cout << "\t\t\t\t|                                                                         |\n";
+        cout << "\t\t\t\t|                     2)   Prisoner details                               |\n";
+        cout << "\t\t\t\t|                                                                         |\n";
+        cout << "\t\t\t\t|                     3)   Attendace prisoner                             |\n";
+        cout << "\t\t\t\t|                                                                         |\n";
+        cout << "\t\t\t\t|                     4)   Release prisoner                               |\n";
+        cout << "\t\t\t\t|                                                                         |\n";
+        cout << "\t\t\t\t|                     5)   Search prisoner                                |\n";
+        cout << "\t\t\t\t|                                                                         |\n";
+        cout << "\t\t\t\t|                     6)   Logout                                         |\n";
+        cout << "\t\t\t\t|                                                                         |\n";
+        cout << "\t\t\t\t|                     7)   Exit                                           |\n";
+        cout << "\t\t\t\t|                                                                         |\n";
+        cout << "\t\t\t\t|                                                                         |\n";
+        cout << "\t\t\t\t---------------------------------------------------------------------------\n";
+        cout << "\n\t\t\t\t\t\t\t";
+		cout << "Enter your choice : ";
+		cin>>c;
+		system("cls");
+		switch(c){
+			case 1:
+				p.in();
+				cout<<"\n\n\t\t\t\t\tEnter 1 to return.";
+			cin>>k;
+			system("cls");
+			if(k==1)
+				admin::page();
+				break;
+			case 2:
+				cout << "\t\t\t\t    -----------------------------------------------------\n";
+    			cout << "\t\t\t\t    |                                                   |\n";
+    			cout << "\t\t\t\t    |                Prisoner list                      |\n";
+    			cout << "\t\t\t\t    |                                                   |\n";
+    			cout << "\t\t\t\t    -----------------------------------------------------\n";
+				p.show();
+				cout<<"\n\n\t\t\t\t\tEnter 1 to return.";
+			cin>>k;
+			system("cls");
+			if(k==1)
+			admin::page();
+				break;
+			case 3:
+				admin::attendence();
+			cout<<"\n\n\t\t\t\t\tEnter 1 to return.";
+			cin>>k;
+			system("cls");
+			if(k==1)
+			admin::page();
+				break;
+			case 4:
+				admin::release();
+					cout<<"\n\n\t\t\t\t\tEnter 1 to return.";
+			cin>>k;
+			system("cls");
+			if(k==1)
+			admin::page();
+				break;
+			case 5:
+			admin::search();
+			cout<<"\n\n\t\t\t\t\tEnter 1 to return.";
+			cin>>k;
+			system("cls");
+			if(k==1)
+			admin::page();
+				break;
+			case 6:
+				admin::logout();
+				break;
+			case 7:
+				admin::exit();
+				break;
+			default:
+				cout<<"Enter a valid choice.";	
+		}
+	}
+};
+void frontpage(){
+int process = 0;
+	system("cls");
+	cout << "\n";
+	int a;
+	for (a = 0; a <= 100000000; a++)
+	{
+	}
+	cout << "\n\n\n\t\t\t\t    ----------------------------------------\n";
+	for (a = 0; a <= 100000000; a++)
+	{
+	}
+	cout << "\t\t\t\t    |   PRISON STATION MANAGEMENT SYSTEM   |\n";
+	for (a = 0; a <= 100000000; a++)
+	{
+	}
+	cout << "\t\t\t\t    ----------------------------------------\n";
+	for (a = 0; a <= 100000000; a++)
+	{
+	}
+	cout << "\t\t\t\t";
+	cout << "\n\n";
+	cout << "\n\n";
+	cout << "\t\t\t\t";
+	system("pause");
+	cout << "\n\t\t\t\tLoading";
+	for (process = 0; process < 15; process++)
+	{
+		for (int a = 0; a <= 100000000; a++)
+		{
+		}
+		cout << ".";
+	}
+}
+main(){
+	admin c;
+	frontpage();
+	system("cls");
+	c.login();
+}
